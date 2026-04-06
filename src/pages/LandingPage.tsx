@@ -38,7 +38,7 @@ export default function LandingPage() {
       <div className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
           <div className="text-xs tracking-wide text-slate-600">
-            Open-source ingestion infrastructure · Sahel Resilience Stack · <span className="text-cyan-700">Sahel Region</span>
+            Open-source ingestion infrastructure · Sahel Resilience Stack · <span className="text-cyan-700">Borno State, Nigeria</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-700">
             <a href="#challenge" className="hover:text-slate-900 transition-colors">Challenge</a>
@@ -156,12 +156,6 @@ export default function LandingPage() {
               When connectivity drops, power is intermittent, and thousands attempt to submit at once, most systems fail silently.
               This engine is designed for clearance workflows under fragile infrastructure constraints.
             </p>
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="text-xs text-slate-500 uppercase tracking-wider">Sticky briefing</div>
-              <div className="mt-2 text-sm text-slate-600 leading-relaxed">
-                The right column scrolls; this left panel stays “glued” so the narrative remains anchored.
-              </div>
-            </div>
           </div>
 
           <div className="lg:col-span-7 space-y-4">
@@ -192,14 +186,11 @@ export default function LandingPage() {
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
           <div className="text-cyan-700 text-xs font-semibold tracking-wider uppercase">Technical Architecture</div>
           <h2 className="mt-3 text-3xl font-semibold">Three-step clearance pipeline</h2>
+          <div className="mt-2 text-sm text-slate-600">Edge-optimized processing designed for zero-downtime.</div>
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-4 lg:sticky lg:top-24">
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <div className="text-xs text-slate-500 uppercase tracking-wider">Sticky operator view</div>
-                <div className="mt-2 text-sm text-slate-600 leading-relaxed">
-                  Keep the pipeline steps visible while details scroll—this is the “gluey” premium feel.
-                </div>
                 <div className="mt-4 space-y-2">
                   {['Asynchronous Ingestion', 'Cryptographic Sanitization', 'Clearance & Verification'].map((t) => (
                     <div key={t} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2">
