@@ -40,7 +40,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           {/* About Section */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/logo.png" alt="Sahel Resilience Stack" className="w-8 h-8 object-contain" />
+              <img src="/logo.svg" alt="Sahel Resilience Stack" className="w-8 h-8 object-contain" />
               <h3 className="text-lg font-semibold">Sahel Resilience Stack</h3>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">

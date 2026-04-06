@@ -10,6 +10,7 @@ import ApplyPage from "./pages/ApplyPage";
 import AuthPage from "./pages/AuthPage";
 import DashboardPage from "./pages/DashboardPage";
 import AdminPage from "./pages/AdminPage";
+import AdminDashboardDemoPage from "./pages/AdminDashboardDemoPage";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { isAdmin } from './config/admins';
 import SmoothScroll from "./components/SmoothScroll";
@@ -57,6 +58,10 @@ const App = () => (
                 <Route
                   path="/dashboard"
                   element={<DashboardPage />}
+                />
+                <Route
+                  path="/admin-dashboard"
+                  element={<AdminDashboardDemoPage />}
                 />
                 <Route
                   path="/apply"

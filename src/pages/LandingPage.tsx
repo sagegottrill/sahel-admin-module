@@ -21,6 +21,8 @@ const marqueeItems = [
   'Data Sovereignty'
 ];
 
+const GITHUB_REPO_URL = 'https://github.com/sagegottrill/sahel-admin-module';
+
 export default function LandingPage() {
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
@@ -80,7 +82,9 @@ export default function LandingPage() {
                 Access live demo <ArrowRight className="h-4 w-4" />
               </button>
               <a
-                href="#"
+                href={GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 font-semibold text-slate-800 hover:bg-slate-50 transition-colors shadow-sm"
               >
                 <Github className="h-4 w-4" /> View GitHub
@@ -245,12 +249,22 @@ export default function LandingPage() {
             <div className="text-sm text-slate-600">Ready to see the clearance engine?</div>
             <div className="mt-1 text-2xl md:text-3xl font-semibold">Launch the live demo dashboard.</div>
           </div>
-          <button
-            onClick={() => navigate('/dashboard')}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 text-white px-5 py-3 font-semibold hover:bg-slate-800 transition-colors"
-          >
-            Access live demo <ArrowRight className="h-4 w-4" />
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white transition-colors hover:bg-slate-800"
+            >
+              Access live demo <ArrowRight className="h-4 w-4" />
+            </button>
+            <a
+              href={GITHUB_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 font-semibold text-slate-800 shadow-sm transition-colors hover:bg-slate-50"
+            >
+              <Github className="h-4 w-4" /> View on GitHub
+            </a>
+          </div>
         </div>
       </section>
     </div>

@@ -47,7 +47,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
 
           {/* Mobile Logo (Left) */}
           <div className="flex md:hidden items-center gap-3 cursor-pointer" onClick={() => onNavigate('home')}>
-            <img src="/logo.png" alt="Sahel Resilience Stack" className="w-10 h-10 object-contain" />
+            <img src="/logo.svg" alt="Sahel Resilience Stack" className="w-10 h-10 object-contain" />
             <div>
               <h1 className="text-lg font-bold text-brand-blue">SRS</h1>
             </div>
@@ -57,7 +57,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4 cursor-pointer group" onClick={() => onNavigate('home')}>
             <div className="relative">
               <div className="absolute inset-0 bg-brand-teal/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <img src="/logo.png" alt="Sahel Resilience Stack" className="w-12 h-12 object-contain relative z-10 transition-transform duration-300 group-hover:scale-105" />
+              <img src="/logo.svg" alt="Sahel Resilience Stack" className="w-12 h-12 object-contain relative z-10 transition-transform duration-300 group-hover:scale-105" />
             </div>
             <div className="text-left transition-transform duration-300 group-hover:translate-x-1">
               <h1 className="text-xl font-bold text-brand-blue leading-tight tracking-tight">Sahel Resilience Stack</h1>

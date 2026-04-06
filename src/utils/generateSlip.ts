@@ -109,7 +109,7 @@ export const generateSlip = async (data: ApplicationData, returnData: boolean = 
         doc.rect(0, 0, 210, 40, 'F');
 
         // 2. Logo - Use absolute URL
-        const logoUrl = `${window.location.origin}/logo.png`;
+        const logoUrl = `${window.location.origin}/logo.svg`;
         try {
             const logoData = await loadImage(logoUrl);
             doc.addImage(logoData, 'PNG', 10, 5, 30, 30);

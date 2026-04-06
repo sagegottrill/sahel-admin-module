@@ -56,7 +56,7 @@ export default function AdminSidebar({
             <div className="md:hidden fixed top-4 left-4 z-50">
                 <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="p-2 bg-white rounded-lg shadow-md text-gray-600"
+                    className="rounded-lg border border-slate-200 bg-white p-2 text-slate-600 shadow-md"
                 >
                     {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -65,40 +65,40 @@ export default function AdminSidebar({
             {/* Sidebar Container */}
             <div
                 className={`
-          fixed inset-y-0 left-0 z-40 bg-white border-r border-gray-200 shadow-sm transition-all duration-300 ease-in-out
+          fixed inset-y-0 left-0 z-40 border-r border-slate-200 bg-white shadow-sm transition-all duration-300 ease-in-out
           ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isCollapsed ? 'w-20' : 'w-64'}
         `}
             >
                 <div className="flex flex-col h-full">
                     {/* Header */}
-                    <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100">
+                    <div className="flex h-16 items-center justify-between border-b border-slate-100 px-4">
                         {!isCollapsed && (
                             <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 bg-brand-teal/10 rounded-lg flex items-center justify-center">
-                                    <span className="text-brand-teal font-bold text-xl">S</span>
+                                <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50">
+                                    <span className="text-lg font-bold text-cyan-700">S</span>
                                 </div>
-                                <span className="font-bold text-[#1e3a5f] text-lg">Admin</span>
+                                <span className="text-lg font-bold text-[#1e3a5f]">Admin Core</span>
                             </div>
                         )}
                         {isCollapsed && (
-                            <div className="w-full flex justify-center">
-                                <div className="w-8 h-8 bg-brand-teal/10 rounded-lg flex items-center justify-center">
-                                    <span className="text-brand-teal font-bold text-xl">S</span>
+                            <div className="flex w-full justify-center">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50">
+                                    <span className="text-lg font-bold text-cyan-700">S</span>
                                 </div>
                             </div>
                         )}
 
                         <button
                             onClick={toggleCollapse}
-                            className="hidden md:flex p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors"
+                            className="hidden rounded-lg p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800 md:flex"
                         >
                             {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
                         </button>
                     </div>
 
                     {/* Navigation */}
-                    <div className="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
+                    <div className="flex-1 space-y-1 overflow-y-auto px-3 py-6">
                         {navItems.map((item) => {
                             const Icon = item.icon;
                             const isActive = activeTab === item.id;
@@ -111,10 +111,10 @@ export default function AdminSidebar({
                                         setMobileMenuOpen(false);
                                     }}
                                     className={`
-                    w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group relative
+                    group relative flex w-full items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200
                     ${isActive
-                                            ? 'bg-brand-blue text-white shadow-md'
-                                            : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
+                                            ? 'bg-cyan-700 text-white shadow-md'
+                                            : 'text-slate-600 hover:bg-slate-50 hover:text-cyan-800'
                                         }
                     ${isCollapsed ? 'justify-center' : ''}
                   `}
@@ -122,7 +122,7 @@ export default function AdminSidebar({
                                 >
                                     <Icon
                                         size={20}
-                                        className={`${isActive ? 'text-white' : 'text-gray-400 group-hover:text-brand-blue'}`}
+                                        className={`${isActive ? 'text-white' : 'text-slate-400 group-hover:text-cyan-800'}`}
                                     />
 
                                     {!isCollapsed && (
@@ -131,7 +131,7 @@ export default function AdminSidebar({
 
                                     {/* Tooltip for collapsed state */}
                                     {isCollapsed && (
-                                        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50">
+                                        <div className="pointer-events-none absolute left-full z-50 ml-2 whitespace-nowrap rounded bg-slate-800 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
                                             {item.label}
                                         </div>
                                     )}
@@ -141,25 +141,25 @@ export default function AdminSidebar({
                     </div>
 
                     {/* User Profile & Logout */}
-                    <div className="p-4 border-t border-gray-100 bg-gray-50/50">
+                    <div className="border-t border-slate-100 bg-slate-50/80 p-4">
                         <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'}`}>
-                            <div className="w-10 h-10 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold shadow-sm">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-[#1e3a5f] font-bold text-white shadow-sm">
                                 {user?.email?.charAt(0).toUpperCase()}
                             </div>
 
                             {!isCollapsed && (
                                 <div className="flex-1 overflow-hidden">
-                                    <p className="text-sm font-semibold text-gray-900 truncate">
+                                    <p className="truncate text-sm font-semibold text-slate-900">
                                         {user?.email?.split('@')[0]}
                                     </p>
-                                    <p className="text-xs text-gray-500 truncate">Administrator</p>
+                                    <p className="truncate text-xs text-slate-500">System administrator</p>
                                 </div>
                             )}
 
                             {!isCollapsed && (
                                 <button
                                     onClick={handleLogout}
-                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                    className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600"
                                     title="Logout"
                                 >
                                     <LogOut size={18} />
@@ -170,7 +170,7 @@ export default function AdminSidebar({
                         {isCollapsed && (
                             <button
                                 onClick={handleLogout}
-                                className="mt-4 w-full p-2 flex justify-center text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                className="mt-4 flex w-full justify-center rounded-lg p-2 text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600"
                                 title="Logout"
                             >
                                 <LogOut size={18} />
@@ -183,7 +183,7 @@ export default function AdminSidebar({
             {/* Overlay for mobile */}
             {mobileMenuOpen && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/20 z-30 backdrop-blur-sm"
+                    className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm md:hidden"
                     onClick={() => setMobileMenuOpen(false)}
                 />
             )}
