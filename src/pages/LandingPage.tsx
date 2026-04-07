@@ -15,7 +15,6 @@ const fadeUp = {
 const marqueeItems = [
   'The Sahel Resilience Stack',
   '5,000+ Concurrent Submissions',
-  '50+ Local Youth Contributors',
   'Cryptographic Sanitization',
   'RBAC Clearance',
   'MIT Open-Source License',
@@ -65,7 +64,7 @@ export default function LandingPage() {
           <motion.div variants={container} initial="hidden" animate="show" className="max-w-3xl">
             <motion.div variants={fadeUp} className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-600 shadow-sm">
               <ShieldCheck className="h-3.5 w-3.5 text-cyan-700" />
-              Administrative ingestion &amp; clearance · The Sahel Resilience Stack
+              Administrative ingestion &amp; clearance
             </motion.div>
 
             <motion.h1 variants={fadeUp} className="mt-6 text-4xl md:text-6xl font-semibold leading-tight">
@@ -73,10 +72,9 @@ export default function LandingPage() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed">
-              Sahel Admin Core is the high-load administrative module of <strong className="font-semibold text-slate-800">The Sahel Resilience Stack</strong>—a
-              cryptographically sanitized ingestion and RBAC clearance path for governments and partners in low-connectivity
-              environments. Maintained by the <strong className="font-semibold text-slate-800">Orivon Edge Youth Guild</strong> alongside a growing bench of{' '}
-              <strong className="font-semibold text-slate-800">50+ local youth contributors</strong> across the program.
+              Sahel Admin Core is the high-load administrative module of The Sahel Resilience Stack—a cryptographically
+              sanitized ingestion and RBAC clearance path for governments and partners operating in low-connectivity
+              environments.
             </motion.p>
 
             <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -106,7 +104,7 @@ export default function LandingPage() {
             { title: 'Live demo', desc: 'Interactive clearance desk: review payloads, sign-off, and RBAC audit trail (demo).', icon: Workflow },
             { title: 'Repository (MIT)', desc: 'Core schema and engine under the MIT Open-Source License—fork and adapt for your tenant.', icon: Database },
             { title: 'Architecture', desc: 'Queue-style ingestion, cryptographic sanitization, and partitioned clearance workflows.', icon: ShieldCheck },
-            { title: 'Admin access', desc: 'Secure operator login (demo + optional backends). Youth Guild–documented runbooks.', icon: KeyRound }
+            { title: 'Admin access', desc: 'Secure operator login (demo + optional backends) with RBAC-governed runbooks.', icon: KeyRound }
           ].map((c) => {
             const Icon = c.icon;
             return (
@@ -141,9 +139,9 @@ export default function LandingPage() {
       <section className="mx-auto max-w-7xl px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { k: '5,000+', v: 'Concurrent submission capacity (validated deployment posture)' },
-            { k: '50+', v: 'Local youth contributors scaling across the stack' },
-            { k: 'MIT', v: 'Open-Source License (public code, auditable patterns)' }
+            { k: '5,000+', v: 'Concurrent submission capacity - validated deployment posture' },
+            { k: '< 10ms', v: 'Query Latency - Edge-optimized' },
+            { k: 'MIT', v: 'Open-Source License - public code, auditable patterns' },
           ].map((s) => (
             <div key={s.v} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="text-3xl font-semibold text-slate-900">{s.k}</div>
@@ -162,9 +160,9 @@ export default function LandingPage() {
               Mass intake breaks traditional portals.
             </h2>
             <p className="mt-4 text-slate-600 leading-relaxed">
-              When connectivity drops, power is intermittent, and thousands attempt to submit at once, most systems fail silently.
-              <strong className="font-semibold text-slate-800"> The Sahel Resilience Stack</strong> routes those peaks through Sahel Admin Core—offline-tolerant
-              intake patterns and RBAC clearance so sovereign operators stay in control.
+              When connectivity drops, power is intermittent, and thousands attempt to submit at once, most systems fail
+              silently. The Sahel Resilience Stack routes those peaks through Sahel Admin Core—offline-tolerant intake
+              patterns and RBAC clearance so sovereign operators stay in control.
             </p>
           </div>
 
@@ -255,8 +253,8 @@ export default function LandingPage() {
             <div className="text-sm text-slate-600">Ready to see the clearance engine?</div>
             <div className="mt-1 text-2xl md:text-3xl font-semibold">Launch the live demo dashboard.</div>
             <p className="mt-3 max-w-xl text-xs text-slate-500">
-              Public repository and demo UI are released under the <strong className="font-medium text-slate-700">MIT Open-Source License</strong>.
-              Proprietary state and clinical datasets remain securely partitioned in private, on-premise infrastructure.
+              Public repository and demo UI are released under the MIT Open-Source License. Proprietary state and clinical
+              datasets remain securely partitioned in private, on-premise infrastructure.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -284,15 +282,14 @@ export default function LandingPage() {
             <div>
               <p className="text-sm font-semibold text-slate-900">The Sahel Resilience Stack</p>
               <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-600">
-                Sahel Admin Core — administrative ingestion and clearance. Stewardship by the{' '}
-                <strong className="font-medium text-slate-800">Orivon Edge Youth Guild</strong> (Youth Warden Guild programs).
+                Sahel Admin Core — enterprise-grade administrative ingestion and RBAC clearance for governments and partners.
               </p>
             </div>
             <div className="rounded-xl border border-cyan-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">
               <p className="font-semibold text-cyan-900">MIT Open-Source License</p>
               <p className="mt-1 text-xs text-slate-600">
-                This public codebase is MIT-licensed for audit and reuse. Proprietary state and clinical datasets remain
-                securely partitioned in private, on-premise infrastructure—not shipped in this repository.
+                Public repository and demo UI are released under the MIT Open-Source License. Proprietary state and clinical
+                datasets remain securely partitioned in private, on-premise infrastructure.
               </p>
             </div>
           </div>
