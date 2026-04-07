@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import {
@@ -146,14 +146,14 @@ function MetricCard(props: {
 }
 
 type ReviewPanelProps = {
-  selected: QueueRow | null;
+  selectedPayload: QueueRow | null;
   approvingId: string | null;
   rejectingId: string | null;
   onApprove: (id: string) => void;
   onReject: (id: string) => void;
 };
 
-function ReviewPanelBody({ selected, approvingId, rejectingId, onApprove, onReject }: ReviewPanelProps) {
+function ReviewPanelBody({ selectedPayload: selected, approvingId, rejectingId, onApprove, onReject }: ReviewPanelProps) {
   if (!selected) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-3 px-4 py-16 text-center">
@@ -302,7 +302,7 @@ export default function AdminDashboardDemoPage() {
   const isLg = useIsLargeScreen();
   const [queue, setQueue] = useState<QueueRow[]>(() => createInitialQueue());
   const [pageIndex, setPageIndex] = useState(0);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedPayload, setSelectedPayload] = useState<QueueRow | null>(null);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [approvingId, setApprovingId] = useState<string | null>(null);
   const [rejectingId, setRejectingId] = useState<string | null>(null);
@@ -318,6 +318,13 @@ export default function AdminDashboardDemoPage() {
   }, [pageIndex, totalPages]);
 
   useEffect(() => {
+    setSelectedPayload((prev) => {
+      if (!prev) return null;
+      return queue.some((r) => r.id === prev.id) ? prev : null;
+    });
+  }, [queue]);
+
+  useEffect(() => {
     const tick = () => {
       setTelemetry({
         latencyMs: 12 + Math.floor(Math.random() * 7),
@@ -329,24 +336,22 @@ export default function AdminDashboardDemoPage() {
     return () => window.clearInterval(id);
   }, []);
 
-  const selected = useMemo(() => queue.find((r) => r.id === selectedId) ?? null, [queue, selectedId]);
-
   const pendingCount = queue.length;
 
   const finalizeApprove = useCallback((id: string) => {
+    toast.success(`RBAC Audit Logged: Payload ${id} cryptographically cleared.`);
     setQueue((prev) => prev.filter((r) => r.id !== id));
-    setSelectedId(null);
+    setSelectedPayload(null);
     setMobileSheetOpen(false);
-    toast.success(`RBAC Audit Logged: Payload ${id} cleared`);
   }, []);
 
   const finalizeReject = useCallback((id: string) => {
-    setQueue((prev) => prev.filter((r) => r.id !== id));
-    setSelectedId(null);
-    setMobileSheetOpen(false);
     toast.message(`RBAC Audit Logged: Record ${id} rejected. Payload sealed pending policy review.`, {
       className: 'border border-rose-200 bg-white text-rose-800',
     });
+    setQueue((prev) => prev.filter((r) => r.id !== id));
+    setSelectedPayload(null);
+    setMobileSheetOpen(false);
   }, []);
 
   const approve = async (id: string) => {
@@ -363,8 +368,8 @@ export default function AdminDashboardDemoPage() {
     finalizeReject(id);
   };
 
-  const onRowActivate = (id: string) => {
-    setSelectedId(id);
+  const onRowActivate = (row: QueueRow) => {
+    setSelectedPayload(row);
     if (!isLg) setMobileSheetOpen(true);
   };
 
@@ -377,7 +382,7 @@ export default function AdminDashboardDemoPage() {
       : `${pageStart + 1}–${Math.min(pageStart + PAGE_SIZE, queue.length)}`;
 
   const panelProps: ReviewPanelProps = {
-    selected,
+    selectedPayload,
     approvingId,
     rejectingId,
     onApprove: approve,
@@ -529,24 +534,26 @@ export default function AdminDashboardDemoPage() {
                   </thead>
                   <tbody className="divide-y divide-slate-200">
                     {visibleRows.map((r) => {
-                      const active = selectedId === r.id;
+                      const active = selectedPayload?.id === r.id;
                       return (
                         <tr
                           key={r.id}
                           role="button"
                           tabIndex={0}
-                          onClick={() => onRowActivate(r.id)}
+                          aria-selected={active}
+                          aria-label={`Select payload ${r.id}`}
+                          onClick={() => onRowActivate(r)}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();
-                              onRowActivate(r.id);
+                              onRowActivate(r);
                             }
                           }}
                           className={cn(
                             'cursor-pointer transition-colors outline-none focus-visible:ring-2 focus-visible:ring-cyan-500',
                             active
-                              ? 'border-l-2 border-l-cyan-600 bg-cyan-50/50'
-                              : 'border-l-2 border-l-transparent hover:bg-slate-50',
+                              ? 'border-l-4 border-l-cyan-600 bg-cyan-50 ring-1 ring-inset ring-cyan-200/60'
+                              : 'border-l-4 border-l-transparent hover:bg-slate-50',
                           )}
                         >
                           <td className="whitespace-nowrap px-4 py-3 font-mono text-cyan-800">{r.id}</td>
